@@ -1,3 +1,17 @@
 on: [push]
+
 jobs:
-my-job:
+  my-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: action/checkout@v2
+      - name: run the action
+        id: hello
+        uses: ./
+        with:
+          myInput: 'JS'
+      - name: output
+        run: |
+          echo ${{ steps.hello.outputs.memory }}
+          echo "total memory successfully output"
